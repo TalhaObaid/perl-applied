@@ -1,0 +1,40 @@
+CREATE TABLE IF NOT EXISTS account (
+       id              INTEGER AUTO_INCREMENT PRIMARY KEY,
+       account_number  INTEGER,
+       customers_id    INTEGER,
+       balance         DOUBLE,
+       transactions_id INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS customers (
+       id        INTEGER,
+       person_id INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS person (
+       id         INTEGER AUTO_INCREMENT PRIMARY KEY,
+       first_name TEXT,
+       last_name  TEXT
+);
+
+CREATE TABLE IF NOT EXISTS transactions (
+       id                    INTEGER,
+       single_transaction_id INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS single_transaction (
+       id                  INTEGER AUTO_INCREMENT PRIMARY KEY,
+       amount              DOUBLE,
+       transaction_type_id INTEGER,
+       previous_balance	   DOUBLE,
+       new_balance	   DOUBLE,
+       transaction_date    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS transaction_type (
+       id   INTEGER AUTO_INCREMENT PRIMARY KEY,
+       name TEXT
+);
+
+DELETE FROM transaction_type;
+INSERT INTO transaction_type (name) VALUES ('credit'), ('debit');
